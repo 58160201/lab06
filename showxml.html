@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script>
+        function getxml() {
+            var xmlhttp = new XMLHttpRequest;
+
+            xmlhttp.onreadystatechange = function() {
+                var i;
+                var data = "";
+                
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var o = xmlhttp.responseXML.documentElement.getElementsByTagName("book");
+                    for (i = 0; i < o.length; i++) {
+                        data += "<h2>" + o[i].getElementsByTagName("title")[0].firstChild.nodeValue + "</h2>";
+                        data += o[i].getElementsByTagName("publisher")[0].firstChild.nodeValue + ", ";
+                        data += o[i].getElementsByTagName("author")[0].firstChild.nodeValue + "<br><br>";
+                        data += "<img src='" + o[i].getElementsByTagName("cover")[0].getAttribute("src") + " 'height='250'> <br><br>";
+                        data += o[i].getElementsByTagName("blurb")[0].firstChild.nodeValue + "<br>";
+                    }
+                    document.getElementById("Div").innerHTML = data;
+                }
+            }
+            xmlhttp.open("GET", "http://angsila.cs.buu.ac.th/~wittawas/592/887371/labs/get_xml.php", true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+
+<body>
+    <div id="Div">
+        <h1>Show XML</h1>
+    </div>
+    <button type="button" onclick="getxml()">
+    Show xml
+</button>
+</body>
+
+</html>

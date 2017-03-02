@@ -1,27 +1,40 @@
 <html>
-    <head>
-        <title> Show HTML </title>
-    <body>
 
+<head>
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp1;
+           
 
-<div class="book">
-	<h3>JavaScript, the Definitive Guide</h3>
-	<p class="moreInfo">By David Flanagan, O'Reilly</p>
-	<img src="http://it-ebooks.info/images/ebooks/3/javascript_the_definitive_guide_6th_edition.jpg"  height="256"/>
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-</div>
-<div class="book">
-	<h3>DOM Scripting</h3>
-	<p class="moreInfo">By Jeremy Keith, Friends of Ed</p>
-	<img src="http://www.accessify.com/features/reviews/dom-scripting/dom-scripting.jpg" height="256"/>
-	<p>Praesent et diam a ligula facilisis venenatis.</p>
-</div>
-<div class="book">
-	<h3>HTML Utopia: Modern Web Design using JavaScript & DOM</h3>
-	<p class="moreInfo">By Stuart Langridge, Sitepoint</p>
-	<img src="https://images-na.ssl-images-amazon.com/images/I/51HUNG65GiL._SX378_BO1,204,203,200_.jpg" height="256"/>
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
-    </head>
-</div>
-</bod>
+            if (window.XMLHttpRequest) {
+                xmlhttp1 = new XMLHttpRequest();
+               
+
+            } else {
+                xmlhttp1 = new ActiveXObject("Microsoft.XMLHTTP");
+               
+            }
+            xmlhttp1.onreadystatechange = function() {
+
+                document.getElementById("myDiv").innerHTML = xmlhttp1.responseText;
+
+            }
+            xmlhttp1.open("GET", "http://angsila.cs.buu.ac.th/~wittawas/592/887371/labs/get_html.php", true);
+            xmlhttp1.send();
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="myDiv">
+        <h2>
+            Show HTML<br> 
+        </h2>
+    </div>
+    <button type="button" onclick="loadXMLDoc()">
+            Change Content
+        </button>
+</body>
+
 </html>
